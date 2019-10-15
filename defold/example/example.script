@@ -1,0 +1,45 @@
+local function log(text)
+	print(text)
+	label.set_text("debug#label", text)
+end
+
+local function tint(self, data)
+	log("tint")
+	pprint(data)
+	local r = bit.rshift(bit.band(0xFF0000, data.tint), 16) / 256
+	local g = bit.rshift(bit.band(0x00FF00, data.tint), 8) / 256
+	local b = bit.rshift(bit.band(0x0000FF, data.tint), 0) / 256
+	local color = vmath.vector4(r, g, b, 1.0)
+	log("color", color)
+	sprite.set_constant("#sprite", "tint", color)
+end
+
+local function spin(self, data)
+	log("spin")
+	pprint(data)
+	if data.spin then
+		local to = go.get(".", "euler.z") + 360
+		go.animate(".", "euler.z", go.PLAYBACK_LOOP_FORWARD, to, go.EASING_LINEAR, 4)
+	else
+		go.cancel_animations(".", "euler.z")
+	end
+end
+
+function init(self)
+	if not interactivecanvas then
+		error("You must run this from HTML5")
+	end
+	
+	commands = {
+		TINT = tint,
+		SPIN = spin
+	}
+	interactivecanvas.initialize(function(self, command, data)
+		if commands[command] then
+			log("Running command " .. tostring(command))
+			commands[command](self, json.decode(data))
+		else
+			log("Unknown command " .. tostring(command))
+		end
+	end)
+end

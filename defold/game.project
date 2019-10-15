@@ -1,0 +1,19 @@
+[project]
+title = InteractiveCanvasSample
+
+[bootstrap]
+main_collection = /example/example.collectionc
+render = /example/example.renderc
+
+[display]
+width = 1136
+dynamic_orientation = 1
+fullscreen = 1
+
+[html5]
+show_fullscreen_button = 0
+show_made_with_defold = 0
+
+[native_extension]
+app_manifest = /release.appmanifest
+
