@@ -4,5 +4,6 @@ package-lock.json
 yarn.lock
 .firebase
 *.log
-/.internal
-/build
+/defold/.internal
+/defold/build
+.DS_Store
