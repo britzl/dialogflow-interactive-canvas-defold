@@ -8,7 +8,7 @@ render = /example/example.renderc
 [display]
 width = 1136
 dynamic_orientation = 1
-fullscreen = 1
+fullscreen = 0
 
 [html5]
 show_fullscreen_button = 0
@@ -16,4 +16,3 @@ show_made_with_defold = 0
 
 [native_extension]
 app_manifest = /release.appmanifest
-

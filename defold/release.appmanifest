@@ -61,13 +61,6 @@ platforms:
             libs: ["physics_null","record_null","profilerext_null","sound_null"]
             linkFlags: []
 
-    armv7-ios:
-        context:
-            excludeLibs: ["physics","LinearMath","BulletDynamics","BulletCollision","Box2D","record","vpx","profilerext","sound","tremolo"]
-            excludeSymbols: ["ProfilerExt","DefaultSoundDevice","AudioDecoderWav","AudioDecoderStbVorbis","AudioDecoderTremolo"]
-            libs: ["physics_null","record_null","profilerext_null","sound_null"]
-            linkFlags: []
-
     arm64-ios:
         context:
             excludeLibs: ["physics","LinearMath","BulletDynamics","BulletCollision","Box2D","record","vpx","profilerext","sound","tremolo"]
