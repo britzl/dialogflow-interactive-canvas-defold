@@ -11,8 +11,8 @@ var InteractiveCanvasLibrary = {
             onUpdate: function(data) {
                 try {
                     var command = data.command.toUpperCase();
-                    var commandBuf = allocate(intArrayFromString(command), 'i8', ALLOC_STACK);
-                    var dataBuf = allocate(intArrayFromString(JSON.stringify(data)), 'i8', ALLOC_STACK);
+                    var commandBuf = stringToUTF8OnStack(command);
+                    var dataBuf = stringToUTF8OnStack(JSON.stringify(data));
                     Runtime.dynCall("vii", callback, [commandBuf, dataBuf]);
                 } catch (e) {
                     // do nothing, when no command is sent or found
@@ -25,4 +25,4 @@ var InteractiveCanvasLibrary = {
 };
 
 autoAddDeps(InteractiveCanvasLibrary, "$Context");
-mergeInto(LibraryManager.library, InteractiveCanvasLibrary);
+addToLibrary(InteractiveCanvasLibrary);
